@@ -1,0 +1,76 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Zuva
+providerId: zuva
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Document AI
+- Contract Analysis
+- Field Extraction
+- Classification
+- OCR
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Zuva DocAI API meters usage per account and per API token. The free
+  developer tier is capped at a daily allowance (25 files, 25 extractions, and
+  25 classifications per day). Field extraction and file requests are bounded
+  per request (up to 100 file IDs and 100 field IDs per extraction request).
+  Specific per-account requests-per-minute throttling values are not published
+  and are not reconciled in this artifact.
+notes: >-
+  Per-account throttling thresholds are not publicly documented; verify daily
+  allowances and any RPM/concurrency limits in the Zuva Dashboard and API FAQ
+  during reconciliation.
+sources:
+- https://zuva.ai/api/faq/
+- https://zuva.ai/documentation/
+- https://api-reference.zuva.ai/
+responseCodes:
+  throttled: 429
+limits:
+- name: Free Tier Files Per Day
+  scope: account
+  metric: files
+  limit: 25
+  notes: Free developer tier daily file upload allowance.
+- name: Free Tier Extractions Per Day
+  scope: account
+  metric: extractions
+  limit: 25
+  notes: Free developer tier daily field extraction allowance.
+- name: Free Tier Classifications Per Day
+  scope: account
+  metric: classifications
+  limit: 25
+  notes: Free developer tier daily classification allowance.
+- name: File IDs Per Extraction Request
+  scope: request
+  metric: file_ids
+  limit: 100
+  notes: Maximum file IDs included in a single extraction request.
+- name: Field IDs Per Extraction Request
+  scope: request
+  metric: field_ids
+  limit: 100
+  notes: Maximum field IDs included in a single extraction request.
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account throttling thresholds are not publicly documented.
+policies:
+- name: Tiered Limits
+  description: Daily allowances on the free tier; higher limits available on pay-as-you-go and enterprise plans.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429.
+- name: Asynchronous Processing
+  description: OCR, extraction, and classification are asynchronous; submit a request, then poll the request status until complete.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

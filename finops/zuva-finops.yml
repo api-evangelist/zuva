@@ -1,0 +1,96 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Zuva
+providerId: zuva
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Document AI
+- Contract Analysis
+- Field Extraction
+- Classification
+- OCR
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Zuva DocAI spend. Zuva bills usage-based: a per-document base
+  charge when a document is processed, per-field, per-page charges for field
+  extraction, and metered charges for OCR and classification. A free developer
+  tier provides limited daily processing, and pay-as-you-go usage is subject to
+  a minimum commitment. Exact per-unit rates are not publicly published.
+notes: >-
+  Per-document, per-field, and per-page rates are not published; verify against
+  Zuva pricing and contract terms during reconciliation.
+sources:
+- https://zuva.ai/pricing/
+- https://zuva.ai/api/
+- https://zuva.ai/api/faq/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Zuva
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Zuva DocAI
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Zuva
+  PublisherName: Zuva
+  InvoiceIssuerName: Zuva
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: documents_processed
+  description: Documents processed, billed at a per-document base charge.
+  unit: documents
+  aggregation: sum
+  dimensions:
+  - account
+  - api
+- name: extraction_field_pages
+  description: Field extraction billed per field, per page across requested fields.
+  unit: field_pages
+  aggregation: sum
+  dimensions:
+  - account
+  - field
+- name: ocr_pages
+  description: Pages processed by the OCR service, metered per page.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+- name: classifications
+  description: Documents classified via the multi-level classification service.
+  unit: documents
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track per-token API key usage in the Zuva Dashboard; inspect document, field, and page burn per workload.
+- name: Allocation
+  description: Issue separate API tokens per workload/team and map them to internal cost centers.
+- name: Optimization
+  description: Limit extraction to the field IDs you need; batch files into single requests (up to 100 file/field IDs); reuse OCR output across services to avoid reprocessing.
+- name: Accountability
+  description: Assign owners per project/token; review document and extraction spend monthly against the pay-as-you-go commitment.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

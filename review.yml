@@ -1,0 +1,84 @@
+aid: zuva
+name: Zuva
+review:
+  question: Does Zuva expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The Zuva DocAI API is a request/response
+    REST API. Long-running operations (OCR, field extraction, classification)
+    are handled with an asynchronous submit-then-poll pattern over HTTPS REST,
+    not with any event-driven streaming transport (no WebSocket and no
+    Server-Sent Events surface is documented).
+findings:
+  summary: |
+    Zuva does not publish a documented public WebSocket API. The Zuva DocAI
+    platform exposes only REST (HTTPS) endpoints under the regional base URL
+    https://{region}.app.zuva.ai/api/v2 (us or eu). Asynchronous work is
+    modeled as a polling workflow: clients POST a request (extraction, mlc, or
+    ocr), receive a request_id, then GET the request status until it is
+    complete. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint and no Server-Sent Events surface is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{region}.app.zuva.ai/api/v2
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events surface is documented; async results are retrieved by polling GET endpoints.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Zuva's API reference or service documentation as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://{region}.app.zuva.ai/api/v2/files
+    - DELETE https://{region}.app.zuva.ai/api/v2/files
+    - DELETE https://{region}.app.zuva.ai/api/v2/files/{file_id}
+    - PUT    https://{region}.app.zuva.ai/api/v2/files/{file_id}/expiration
+    - POST   https://{region}.app.zuva.ai/api/v2/extraction
+    - GET    https://{region}.app.zuva.ai/api/v2/extractions
+    - GET    https://{region}.app.zuva.ai/api/v2/extraction/{request_id}
+    - GET    https://{region}.app.zuva.ai/api/v2/extraction/{request_id}/results/text
+    - POST   https://{region}.app.zuva.ai/api/v2/mlc
+    - GET    https://{region}.app.zuva.ai/api/v2/mlcs
+    - GET    https://{region}.app.zuva.ai/api/v2/mlc/{request_id}
+    - POST   https://{region}.app.zuva.ai/api/v2/ocr
+    - GET    https://{region}.app.zuva.ai/api/v2/ocrs
+    - GET    https://{region}.app.zuva.ai/api/v2/ocr/{request_id}
+    - GET    https://{region}.app.zuva.ai/api/v2/ocr/{request_id}/text
+    - GET    https://{region}.app.zuva.ai/api/v2/ocr/{request_id}/images
+    - GET    https://{region}.app.zuva.ai/api/v2/ocr/{request_id}/images/{page_number}
+    - GET    https://{region}.app.zuva.ai/api/v2/ocr/{request_id}/layouts
+    - GET    https://{region}.app.zuva.ai/api/v2/fields
+    - POST   https://{region}.app.zuva.ai/api/v2/fields
+    - GET    https://{region}.app.zuva.ai/api/v2/fields/{field_id}/metadata
+    - PUT    https://{region}.app.zuva.ai/api/v2/fields/{field_id}/metadata
+  notes: |
+    Language detection does not have a dedicated endpoint; the document
+    language is returned as part of the multi-level classification (MLC)
+    results. The "Zuva Language API" in apis.yml documents this capability as
+    surfaced through the classification service.
+sources:
+  - url: https://api-reference.zuva.ai/
+    type: APIReference
+    note: All documented operations are HTTPS REST; no WebSocket or SSE transport.
+  - url: https://zuva.ai/documentation/
+    type: Documentation
+    note: Overview of Zuva DocAI services; async workflows use submit-then-poll REST calls.
+  - url: https://zuva.ai/documentation/quickstart/
+    type: Documentation
+    note: Confirms base URL https://us.app.zuva.ai/api/v2 and Bearer token authentication.
+  - url: https://zuva.ai/documentation/services/
+    type: Documentation
+    note: Lists File Submission, OCR, Document Classification, Language Classification, and Field Extraction services.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists, so no AsyncAPI document was
+    authored. The catalog documents the REST API surface only, with the
+    asynchronous submit-then-poll workflow captured in the OpenAPI definition.

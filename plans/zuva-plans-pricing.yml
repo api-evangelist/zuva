@@ -1,0 +1,166 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Zuva
+providerId: zuva
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Document AI
+- Contract Analysis
+- Field Extraction
+- Classification
+- OCR
+- Plans
+description: >-
+  Zuva DocAI uses a usage-based, pay-as-you-go pricing model. Processing a
+  document incurs a per-document base charge, and field extraction is charged
+  per field, per page; OCR and classification are also metered per usage. A free
+  developer tier provides a limited daily allowance with no credit card. The
+  pay-as-you-go API plan carries a minimum commitment, and custom enterprise
+  pricing is available for large-scale contract review. Exact per-page and
+  per-field dollar amounts are not published and require contacting Zuva.
+notes: >-
+  Free-tier allowances and the pay-as-you-go minimum commitment are drawn from
+  Zuva's public pages and may change; verify exact per-page, per-field, and
+  per-document rates with Zuva during reconciliation.
+sources:
+- https://zuva.ai/pricing/
+- https://zuva.ai/api/
+- https://zuva.ai/api/faq/
+- https://zuva.ai/terms/zuva/
+plans:
+- id: zuva-free
+  name: Free Developer Tier
+  type: free
+  description: >-
+    Free access to the Zuva DocAI API with a limited daily allowance and no
+    credit card required.
+  entries:
+  - label: Files Per Day
+    name: free_files
+    type: limit
+    metric: files
+    limit: 25
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  - label: Extractions Per Day
+    name: free_extractions
+    type: limit
+    metric: extractions
+    limit: 25
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  - label: Classifications Per Day
+    name: free_classifications
+    type: limit
+    metric: classifications
+    limit: 25
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Files
+  - name: Field Extraction
+  - name: Classification
+  - name: OCR
+- id: zuva-pay-as-you-go
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Usage-based metering across all Zuva DocAI services. A per-document base
+    charge applies when a document is processed, with additional per-field,
+    per-page charges for field extraction. Subject to a minimum commitment.
+  entries:
+  - label: Document Base Charge
+    name: document_base
+    type: usage
+    metric: documents
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-document base charge (contact Zuva)
+    userMultiplied: false
+  - label: Field Extraction
+    name: field_extraction
+    type: usage
+    metric: fields
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: charged per field, per page (contact Zuva)
+    userMultiplied: false
+  - label: OCR
+    name: ocr
+    type: usage
+    metric: pages
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: metered per page (contact Zuva)
+    userMultiplied: false
+  - label: Classification
+    name: classification
+    type: usage
+    metric: documents
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: metered per document (contact Zuva)
+    userMultiplied: false
+  - label: Minimum Commitment
+    name: minimum_commitment
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $5,000 minimum commitment
+    userMultiplied: false
+  elements:
+  - name: Files
+  - name: Field Extraction
+  - name: Classification
+  - name: Language
+  - name: OCR
+  - name: Fields Catalog
+- id: zuva-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom pricing for medium-to-large contract review projects and ongoing
+    large-scale analysis, with negotiated terms and regional (US / EU)
+    deployment. Contact Zuva sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Large-Scale Contract Review
+  - name: Regional Deployment
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

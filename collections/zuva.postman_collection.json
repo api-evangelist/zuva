@@ -1,0 +1,724 @@
+{
+  "item": [
+    {
+      "id": "a1f0c0d1-0001-4001-9001-000000000001",
+      "name": "Files",
+      "description": {
+        "content": "Upload and manage document files.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c0d1-0001-4001-9001-000000000011",
+          "name": "Upload a document file.",
+          "request": {
+            "name": "Upload a document file.",
+            "description": {
+              "content": "Upload the binary content of a document and receive a file_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "files"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file",
+              "file": {}
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0001-4001-9001-000000000012",
+          "name": "Delete multiple files.",
+          "request": {
+            "name": "Delete multiple files.",
+            "description": {
+              "content": "Delete multiple uploaded files by their file IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "files"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                {
+                  "key": "file_ids",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0001-4001-9001-000000000013",
+          "name": "Delete a single file.",
+          "request": {
+            "name": "Delete a single file.",
+            "description": {
+              "content": "Delete a single uploaded file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "files", ":file_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "file_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0001-4001-9001-000000000014",
+          "name": "Update a file's expiration.",
+          "request": {
+            "name": "Update a file's expiration.",
+            "description": {
+              "content": "Update the retention period (expiration) of an uploaded file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "files", ":file_id", "expiration"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "file_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiration\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c0d1-0002-4002-9002-000000000002",
+      "name": "Field Extraction",
+      "description": {
+        "content": "Extract field values from documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c0d1-0002-4002-9002-000000000021",
+          "name": "Create field extraction requests.",
+          "request": {
+            "name": "Create field extraction requests.",
+            "description": {
+              "content": "Submit files and field IDs to extract (up to 100 each).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "extraction"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_ids\": [\"<string>\"],\n  \"field_ids\": [\"<string>\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0002-4002-9002-000000000022",
+          "name": "Query multiple extraction requests.",
+          "request": {
+            "name": "Query multiple extraction requests.",
+            "description": {
+              "content": "Query multiple extraction request statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "extractions"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0002-4002-9002-000000000023",
+          "name": "Retrieve an extraction request status.",
+          "request": {
+            "name": "Retrieve an extraction request status.",
+            "description": {
+              "content": "Retrieve the status of an extraction request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "extraction", ":request_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0002-4002-9002-000000000024",
+          "name": "Retrieve extraction text results.",
+          "request": {
+            "name": "Retrieve extraction text results.",
+            "description": {
+              "content": "Fetch extracted field values with text spans and locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "extraction", ":request_id", "results", "text"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c0d1-0003-4003-9003-000000000003",
+      "name": "Classification",
+      "description": {
+        "content": "Multi-level document classification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c0d1-0003-4003-9003-000000000031",
+          "name": "Create a document classification request.",
+          "request": {
+            "name": "Create a document classification request.",
+            "description": {
+              "content": "Submit files to the multi-level classification (MLC) service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "mlc"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_ids\": [\"<string>\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0003-4003-9003-000000000032",
+          "name": "Query multiple classification requests.",
+          "request": {
+            "name": "Query multiple classification requests.",
+            "description": {
+              "content": "Query multiple classification request statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "mlcs"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0003-4003-9003-000000000033",
+          "name": "Retrieve classification status and results.",
+          "request": {
+            "name": "Retrieve classification status and results.",
+            "description": {
+              "content": "Retrieve document type, language, and amendment status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "mlc", ":request_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c0d1-0004-4004-9004-000000000004",
+      "name": "OCR",
+      "description": {
+        "content": "Optical character recognition.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000041",
+          "name": "Create an OCR request.",
+          "request": {
+            "name": "Create an OCR request.",
+            "description": {
+              "content": "Submit files for optical character recognition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_ids\": [\"<string>\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000042",
+          "name": "Query multiple OCR requests.",
+          "request": {
+            "name": "Query multiple OCR requests.",
+            "description": {
+              "content": "Query multiple OCR request statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocrs"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000043",
+          "name": "Retrieve an OCR request status.",
+          "request": {
+            "name": "Retrieve an OCR request status.",
+            "description": {
+              "content": "Retrieve the status of an OCR request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr", ":request_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000044",
+          "name": "Retrieve OCR extracted text.",
+          "request": {
+            "name": "Retrieve OCR extracted text.",
+            "description": {
+              "content": "Retrieve the extracted text for an OCR request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr", ":request_id", "text"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000045",
+          "name": "Download all page images as a zip.",
+          "request": {
+            "name": "Download all page images as a zip.",
+            "description": {
+              "content": "Download all pages as PNG images in a zip archive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr", ":request_id", "images"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000046",
+          "name": "Download a single page image.",
+          "request": {
+            "name": "Download a single page image.",
+            "description": {
+              "content": "Download a specific page as a PNG image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr", ":request_id", "images", ":page_number"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page_number",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0004-4004-9004-000000000047",
+          "name": "Retrieve layout protobuf binary.",
+          "request": {
+            "name": "Retrieve layout protobuf binary.",
+            "description": {
+              "content": "Retrieve the layout protobuf binary for an OCR request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "ocr", ":request_id", "layouts"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "request_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0c0d1-0005-4005-9005-000000000005",
+      "name": "Fields",
+      "description": {
+        "content": "Field catalog management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0c0d1-0005-4005-9005-000000000051",
+          "name": "List available fields.",
+          "request": {
+            "name": "List available fields.",
+            "description": {
+              "content": "List all available extraction fields with metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "fields"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0005-4005-9005-000000000052",
+          "name": "Create a custom extraction field.",
+          "request": {
+            "name": "Create a custom extraction field.",
+            "description": {
+              "content": "Create a custom extraction field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "fields"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0005-4005-9005-000000000053",
+          "name": "Retrieve field metadata.",
+          "request": {
+            "name": "Retrieve field metadata.",
+            "description": {
+              "content": "Retrieve metadata for a field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "fields", ":field_id", "metadata"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "field_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a1f0c0d1-0005-4005-9005-000000000054",
+          "name": "Update field metadata.",
+          "request": {
+            "name": "Update field metadata.",
+            "description": {
+              "content": "Update a field's name and description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v2", "fields", ":field_id", "metadata"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                {
+                  "key": "field_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://us.app.zuva.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2e1d0c3-d283-4104-bd01-a81e5c6ea7aa",
+    "name": "Zuva DocAI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Zuva DocAI API\n\nContact Support:\n Name: Zuva Support\n URL: https://zuva.ai/",
+      "type": "text/plain"
+    }
+  }
+}
