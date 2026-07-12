@@ -134,6 +134,10 @@ apis:
     creating custom fields and reading or updating field metadata such as name and
     description.
 common:
+- type: DomainSecurity
+  url: security/zuva-domain-security.yml
+- type: Authentication
+  url: authentication/zuva-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/zuvaai
 - type: LinkedIn
@@ -148,6 +152,8 @@ common:
   url: rate-limits/zuva-rate-limits.yml
 - type: FinOps
   url: finops/zuva-finops.yml
+- url: https://zuva.ai/blog/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

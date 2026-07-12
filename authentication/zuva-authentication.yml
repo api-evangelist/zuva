@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/zuva-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer
+    <token>`.'
+  sources:
+  - openapi/zuva-openapi.yml
