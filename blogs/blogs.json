@@ -1,0 +1,14 @@
+{
+  "repo": "zuva",
+  "feeds": [
+    {
+      "source": "https://zuva.ai/blog/",
+      "feed_url": "https://zuva.ai/blog/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 10
+}
