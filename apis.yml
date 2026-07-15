@@ -134,6 +134,8 @@ apis:
     creating custom fields and reading or updating field metadata such as name and
     description.
 common:
+- type: AgenticAccess
+  url: agentic-access/zuva-agentic-access.yml
 - type: DomainSecurity
   url: security/zuva-domain-security.yml
 - type: Authentication
