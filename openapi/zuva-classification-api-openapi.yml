@@ -1,0 +1,122 @@
+openapi: 3.0.1
+info:
+  title: Zuva DocAI Classification API
+  description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
+  termsOfService: https://zuva.ai/terms/zuva/
+  contact:
+    name: Zuva Support
+    url: https://zuva.ai/
+  version: '2.0'
+servers:
+- url: https://{region}.app.zuva.ai/api/v2
+  description: Zuva DocAI regional API server
+  variables:
+    region:
+      default: us
+      description: Deployment region for the Zuva DocAI API.
+      enum:
+      - us
+      - eu
+security:
+- bearerAuth: []
+tags:
+- name: Classification
+  description: Multi-level document classification.
+paths:
+  /mlc:
+    post:
+      operationId: createClassification
+      tags:
+      - Classification
+      summary: Create a document classification request.
+      description: Submit files to the multi-level classification (MLC) service, which classifies documents across 220+ document types and returns the document language and amendment status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - file_ids
+              properties:
+                file_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '202':
+          description: Classification requests accepted and queued.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClassificationResult'
+  /mlcs:
+    get:
+      operationId: getClassifications
+      tags:
+      - Classification
+      summary: Query multiple classification requests.
+      parameters:
+      - name: request_id
+        in: query
+        required: false
+        description: Comma-separated list of classification request IDs.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Classification request statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClassificationResult'
+  /mlc/{request_id}:
+    get:
+      operationId: getClassification
+      tags:
+      - Classification
+      summary: Retrieve classification status and results.
+      description: Retrieve the classification result for a request, including the document type, detected language, and whether the document is an amendment.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Classification result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationResult'
+components:
+  schemas:
+    ClassificationResult:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        status:
+          type: string
+        classification:
+          type: string
+        language:
+          type: string
+        is_amendment:
+          type: boolean
+  parameters:
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      description: The unique identifier of an asynchronous request.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer <token>`.'

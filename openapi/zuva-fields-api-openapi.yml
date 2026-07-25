@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Zuva DocAI Classification Fields API
+  description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
+  termsOfService: https://zuva.ai/terms/zuva/
+  contact:
+    name: Zuva Support
+    url: https://zuva.ai/
+  version: '2.0'
+servers:
+- url: https://{region}.app.zuva.ai/api/v2
+  description: Zuva DocAI regional API server
+  variables:
+    region:
+      default: us
+      description: Deployment region for the Zuva DocAI API.
+      enum:
+      - us
+      - eu
+security:
+- bearerAuth: []
+tags:
+- name: Fields
+  description: Field catalog management.
+paths:
+  /fields:
+    get:
+      operationId: getFields
+      tags:
+      - Fields
+      summary: List available fields.
+      description: List all available extraction fields with their metadata.
+      responses:
+        '200':
+          description: List of fields.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Field'
+    post:
+      operationId: createField
+      tags:
+      - Fields
+      summary: Create a custom extraction field.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                field_name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Field created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+  /fields/{field_id}/metadata:
+    get:
+      operationId: getFieldMetadata
+      tags:
+      - Fields
+      summary: Retrieve field metadata.
+      parameters:
+      - $ref: '#/components/parameters/FieldId'
+      responses:
+        '200':
+          description: Field metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+    put:
+      operationId: updateFieldMetadata
+      tags:
+      - Fields
+      summary: Update field metadata.
+      description: Update a field's name and description.
+      parameters:
+      - $ref: '#/components/parameters/FieldId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                field_name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Field metadata updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+components:
+  parameters:
+    FieldId:
+      name: field_id
+      in: path
+      required: true
+      description: The unique identifier of a field.
+      schema:
+        type: string
+  schemas:
+    Field:
+      type: object
+      properties:
+        field_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        bias:
+          type: number
+        f_score:
+          type: number
+        precision:
+          type: number
+        recall:
+          type: number
+        is_custom:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer <token>`.'

@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: Zuva DocAI Classification OCR API
+  description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
+  termsOfService: https://zuva.ai/terms/zuva/
+  contact:
+    name: Zuva Support
+    url: https://zuva.ai/
+  version: '2.0'
+servers:
+- url: https://{region}.app.zuva.ai/api/v2
+  description: Zuva DocAI regional API server
+  variables:
+    region:
+      default: us
+      description: Deployment region for the Zuva DocAI API.
+      enum:
+      - us
+      - eu
+security:
+- bearerAuth: []
+tags:
+- name: OCR
+  description: Optical character recognition.
+paths:
+  /ocr:
+    post:
+      operationId: createOcr
+      tags:
+      - OCR
+      summary: Create an OCR request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - file_ids
+              properties:
+                file_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '202':
+          description: OCR requests accepted and queued.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OcrResult'
+  /ocrs:
+    get:
+      operationId: getOcrs
+      tags:
+      - OCR
+      summary: Query multiple OCR requests.
+      parameters:
+      - name: request_id
+        in: query
+        required: false
+        description: Comma-separated list of OCR request IDs.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OCR request statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OcrResult'
+  /ocr/{request_id}:
+    get:
+      operationId: getOcr
+      tags:
+      - OCR
+      summary: Retrieve an OCR request status.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: OCR request status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OcrResult'
+  /ocr/{request_id}/text:
+    get:
+      operationId: getOcrText
+      tags:
+      - OCR
+      summary: Retrieve OCR extracted text.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Extracted text.
+          content:
+            text/plain:
+              schema:
+                type: string
+  /ocr/{request_id}/images:
+    get:
+      operationId: getOcrImages
+      tags:
+      - OCR
+      summary: Download all page images as a zip.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Zip archive of page PNG images.
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+  /ocr/{request_id}/images/{page_number}:
+    get:
+      operationId: getOcrImagePage
+      tags:
+      - OCR
+      summary: Download a single page image.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      - name: page_number
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: PNG image of the requested page.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+  /ocr/{request_id}/layouts:
+    get:
+      operationId: getOcrLayouts
+      tags:
+      - OCR
+      summary: Retrieve layout protobuf binary.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Layout protobuf binary.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    OcrResult:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        status:
+          type: string
+        page_count:
+          type: integer
+        character_count:
+          type: integer
+        scan_quality:
+          type: string
+        scan_score:
+          type: number
+  parameters:
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      description: The unique identifier of an asynchronous request.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer <token>`.'

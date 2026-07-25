@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: Zuva DocAI Classification Field Extraction API
+  description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
+  termsOfService: https://zuva.ai/terms/zuva/
+  contact:
+    name: Zuva Support
+    url: https://zuva.ai/
+  version: '2.0'
+servers:
+- url: https://{region}.app.zuva.ai/api/v2
+  description: Zuva DocAI regional API server
+  variables:
+    region:
+      default: us
+      description: Deployment region for the Zuva DocAI API.
+      enum:
+      - us
+      - eu
+security:
+- bearerAuth: []
+tags:
+- name: Field Extraction
+  description: Extract field values from documents.
+paths:
+  /extraction:
+    post:
+      operationId: createExtraction
+      tags:
+      - Field Extraction
+      summary: Create field extraction requests.
+      description: Submit one or more files and field IDs to extract. Accepts up to 100 file IDs and 100 field IDs per request. Returns one request per file.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionRequest'
+      responses:
+        '202':
+          description: Extraction requests accepted and queued.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  file_ids:
+                    type: array
+                    items:
+                      type: string
+                  field_ids:
+                    type: array
+                    items:
+                      type: string
+                  status:
+                    type: string
+  /extractions:
+    get:
+      operationId: getExtractions
+      tags:
+      - Field Extraction
+      summary: Query multiple extraction requests.
+      parameters:
+      - name: request_id
+        in: query
+        required: false
+        description: Comma-separated list of extraction request IDs.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Extraction request statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Request'
+  /extraction/{request_id}:
+    get:
+      operationId: getExtraction
+      tags:
+      - Field Extraction
+      summary: Retrieve an extraction request status.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Extraction request status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+  /extraction/{request_id}/results/text:
+    get:
+      operationId: getExtractionResultsText
+      tags:
+      - Field Extraction
+      summary: Retrieve extraction text results.
+      description: Fetch extracted field values with text spans and locations.
+      parameters:
+      - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Extraction results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionResults'
+components:
+  schemas:
+    ExtractionRequest:
+      type: object
+      required:
+      - file_ids
+      - field_ids
+      properties:
+        file_ids:
+          type: array
+          description: Up to 100 file IDs.
+          items:
+            type: string
+        field_ids:
+          type: array
+          description: Up to 100 field IDs.
+          items:
+            type: string
+        options:
+          type: object
+          properties:
+            field_heuristics:
+              type: array
+              items:
+                type: object
+    ExtractionResults:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              field_id:
+                type: string
+              text:
+                type: string
+              spans:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    start:
+                      type: integer
+                    end:
+                      type: integer
+    Request:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        field_ids:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - processing
+          - complete
+          - failed
+  parameters:
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      description: The unique identifier of an asynchronous request.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer <token>`.'

@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: Zuva DocAI Classification Files API
+  description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
+  termsOfService: https://zuva.ai/terms/zuva/
+  contact:
+    name: Zuva Support
+    url: https://zuva.ai/
+  version: '2.0'
+servers:
+- url: https://{region}.app.zuva.ai/api/v2
+  description: Zuva DocAI regional API server
+  variables:
+    region:
+      default: us
+      description: Deployment region for the Zuva DocAI API.
+      enum:
+      - us
+      - eu
+security:
+- bearerAuth: []
+tags:
+- name: Files
+  description: Upload and manage document files.
+paths:
+  /files:
+    post:
+      operationId: createFile
+      tags:
+      - Files
+      summary: Upload a document file.
+      description: Upload the binary content of a document to Zuva. Returns a file_id used by the OCR, extraction, and classification services.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: File created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+    delete:
+      operationId: deleteFiles
+      tags:
+      - Files
+      summary: Delete multiple files.
+      description: Delete multiple uploaded files by their file IDs.
+      parameters:
+      - name: file_ids
+        in: query
+        required: true
+        description: Comma-separated list of file IDs to delete.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Files deleted.
+  /files/{file_id}:
+    delete:
+      operationId: deleteFile
+      tags:
+      - Files
+      summary: Delete a single file.
+      parameters:
+      - $ref: '#/components/parameters/FileId'
+      responses:
+        '204':
+          description: File deleted.
+  /files/{file_id}/expiration:
+    put:
+      operationId: updateFileExpiration
+      tags:
+      - Files
+      summary: Update a file's expiration.
+      description: Update the retention period (expiration) of an uploaded file.
+      parameters:
+      - $ref: '#/components/parameters/FileId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expiration:
+                  type: string
+                  format: date-time
+                  description: New expiration timestamp for the file.
+      responses:
+        '200':
+          description: Expiration updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+components:
+  parameters:
+    FileId:
+      name: file_id
+      in: path
+      required: true
+      description: The unique identifier of an uploaded file.
+      schema:
+        type: string
+  schemas:
+    File:
+      type: object
+      properties:
+        file_id:
+          type: string
+        expiration:
+          type: string
+          format: date-time
+        attributes:
+          type: array
+          items:
+            type: string
+        size:
+          type: integer
+        permissions:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Zuva API token passed in the Authorization header as `Authorization: Bearer <token>`.'
