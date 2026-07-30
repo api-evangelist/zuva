@@ -7,7 +7,20 @@ description: Zuva (by Kira Systems) provides a contract and document AI REST API
   asynchronous OCR, field extraction across 1,400+ pre-built fields, multi-level
   document classification across 220+ document types, language detection, and a
   searchable fields catalog, secured with Bearer API tokens across US and EU regions.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Freemium · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zuva.png
 tags:
 - AI
 - Document AI
@@ -19,120 +32,126 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: zuva:files
-  name: Zuva Files API
-  tags:
-  - Files
-  - Upload
-  - Storage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: zuva:zuva-classification-api
+  name: Zuva Classification API
+  description: Multi-level document classification.
   humanURL: https://zuva.ai/documentation/services/file-submission/
   baseURL: https://us.app.zuva.ai/api/v2
+  tags:
+  - Classification
   properties:
-  - url: https://zuva.ai/documentation/services/file-submission/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: Upload document files for processing and receive a file_id used by the
-    OCR, extraction, and classification services. Supports file expiration management
-    and deletion.
-- aid: zuva:field-extraction
+  - type: OpenAPI
+    url: openapi/zuva-classification-api-openapi.yml
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/file-submission/
+  - type: APIReference
+    url: https://api-reference.zuva.ai/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/classification-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/language-classification/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/using-ocr/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/field-extraction/
+- aid: zuva:zuva-field-extraction-api
   name: Zuva Field Extraction API
+  description: Extract field values from documents.
+  humanURL: https://zuva.ai/documentation/services/file-submission/
+  baseURL: https://us.app.zuva.ai/api/v2
   tags:
   - Field Extraction
-  - Contracts
-  - NLP
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://zuva.ai/documentation/services/field-extraction/
-  baseURL: https://us.app.zuva.ai/api/v2
   properties:
-  - url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: Asynchronously extract structured values for specified field IDs from
-    uploaded documents using 1,400+ pre-built fields, returning text spans and
-    locations. Submit a request, poll its status, then retrieve text results.
-- aid: zuva:classification
-  name: Zuva Classification API
-  tags:
-  - Classification
-  - Document Types
-  - Multi-Level Classification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://zuva.ai/documentation/services/document-classification/
+  - type: OpenAPI
+    url: openapi/zuva-field-extraction-api-openapi.yml
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/file-submission/
+  - type: APIReference
+    url: https://api-reference.zuva.ai/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/classification-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/language-classification/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/using-ocr/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/field-extraction/
+- aid: zuva:zuva-fields-api
+  name: Zuva Fields API
+  description: Field catalog management.
+  humanURL: https://zuva.ai/documentation/services/file-submission/
   baseURL: https://us.app.zuva.ai/api/v2
-  properties:
-  - url: https://zuva.ai/documentation/workflows/classification-workflow/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: Asynchronously classify documents across 220+ document types via the
-    multi-level classification (MLC) service, returning the document type, language,
-    and amendment status.
-- aid: zuva:language
-  name: Zuva Language API
-  tags:
-  - Language
-  - Detection
-  - Classification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://zuva.ai/documentation/services/language-classification/
-  baseURL: https://us.app.zuva.ai/api/v2
-  properties:
-  - url: https://zuva.ai/documentation/services/language-classification/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: Detect the primary language of a document. Language is returned as part
-    of the multi-level classification (MLC) results; there is no standalone language
-    endpoint.
-- aid: zuva:ocr
-  name: Zuva OCR API
-  tags:
-  - OCR
-  - Text
-  - Images
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://zuva.ai/documentation/services/using-ocr/
-  baseURL: https://us.app.zuva.ai/api/v2
-  properties:
-  - url: https://zuva.ai/documentation/services/using-ocr/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: Asynchronously run optical character recognition on uploaded documents,
-    returning extracted text, per-page PNG images, eOCR documents, and layout
-    protobuf data with scan quality metrics.
-- aid: zuva:fields-catalog
-  name: Zuva Fields Catalog API
   tags:
   - Fields
-  - Catalog
-  - Metadata
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://zuva.ai/documentation/services/field-extraction/
-  baseURL: https://us.app.zuva.ai/api/v2
   properties:
-  - url: https://zuva.ai/documentation/services/field-extraction/
-    type: Documentation
-  - url: https://api-reference.zuva.ai/
-    type: APIReference
-  - url: openapi/zuva-openapi.yml
-    type: OpenAPI
-  description: List and manage the catalog of available extraction fields, including
-    creating custom fields and reading or updating field metadata such as name and
-    description.
+  - type: OpenAPI
+    url: openapi/zuva-fields-api-openapi.yml
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/file-submission/
+  - type: APIReference
+    url: https://api-reference.zuva.ai/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/classification-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/language-classification/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/using-ocr/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/field-extraction/
+- aid: zuva:zuva-files-api
+  name: Zuva Files API
+  description: Upload and manage document files.
+  humanURL: https://zuva.ai/documentation/services/file-submission/
+  baseURL: https://us.app.zuva.ai/api/v2
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/zuva-files-api-openapi.yml
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/file-submission/
+  - type: APIReference
+    url: https://api-reference.zuva.ai/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/classification-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/language-classification/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/using-ocr/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/field-extraction/
+- aid: zuva:zuva-ocr-api
+  name: Zuva OCR API
+  description: Optical character recognition.
+  humanURL: https://zuva.ai/documentation/services/file-submission/
+  baseURL: https://us.app.zuva.ai/api/v2
+  tags:
+  - OCR
+  properties:
+  - type: OpenAPI
+    url: openapi/zuva-ocr-api-openapi.yml
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/file-submission/
+  - type: APIReference
+    url: https://api-reference.zuva.ai/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/field-extraction-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/workflows/classification-workflow/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/language-classification/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/using-ocr/
+  - type: Documentation
+    url: https://zuva.ai/documentation/services/field-extraction/
 common:
 - type: AgenticAccess
   url: agentic-access/zuva-agentic-access.yml
