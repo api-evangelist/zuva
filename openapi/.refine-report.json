@@ -1,0 +1,22 @@
+{
+  "provider": "zuva",
+  "sources": [
+    "zuva-classification-api-openapi.yml",
+    "zuva-field-extraction-api-openapi.yml",
+    "zuva-fields-api-openapi.yml",
+    "zuva-files-api-openapi.yml",
+    "zuva-ocr-api-openapi.yml"
+  ],
+  "outputs": [
+    "zuva-classification-api-openapi.yml",
+    "zuva-field-extraction-api-openapi.yml",
+    "zuva-fields-api-openapi.yml",
+    "zuva-files-api-openapi.yml",
+    "zuva-ocr-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

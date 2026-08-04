@@ -2,6 +2,13 @@
   "repo": "zuva",
   "feeds": [
     {
+      "source": "https://zuva.ai/blog/index.xml",
+      "feed_url": "https://zuva.ai/blog/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://zuva.ai/blog/",
       "feed_url": "https://zuva.ai/blog/index.xml",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
-  "post_count": 10
+  "fetched": "2026-08-01T15:49:00Z",
+  "post_count": 30
 }
