@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "ad15f56e-7c2b-4b18-932e-29f5ac9708b3",
+      "name": "Classification",
+      "description": {
+        "content": "Multi-level document classification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c3788e3-e42d-456e-a2bb-6adad57dc055",
+          "name": "Create a document classification request.",
+          "request": {
+            "name": "Create a document classification request.",
+            "description": {
+              "content": "Submit files to the multi-level classification (MLC) service, which classifies documents across 220+ document types and returns the document language and amendment status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mlc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58bc8c17-ab13-48eb-9d86-6a5365d8dd90",
+              "name": "Classification requests accepted and queued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mlc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"classification\": \"string\",\n    \"language\": \"string\",\n    \"is_amendment\": false\n  },\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"classification\": \"string\",\n    \"language\": \"string\",\n    \"is_amendment\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b27b28b-c3e8-49c0-aa55-b49649c83dd5",
+          "name": "Query multiple classification requests.",
+          "request": {
+            "name": "Query multiple classification requests.",
+            "description": {},
+            "url": {
+              "path": [
+                "mlcs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "Comma-separated list of classification request IDs."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "845ba23e-d72d-4e79-9463-6a4a700c86e1",
+              "name": "Classification request statuses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mlcs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"classification\": \"string\",\n    \"language\": \"string\",\n    \"is_amendment\": false\n  },\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"classification\": \"string\",\n    \"language\": \"string\",\n    \"is_amendment\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bb1226b-f6bb-4715-b434-e401f5d417bd",
+          "name": "Retrieve classification status and results.",
+          "request": {
+            "name": "Retrieve classification status and results.",
+            "description": {
+              "content": "Retrieve the classification result for a request, including the document type, detected language, and whether the document is an amendment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mlc",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7af06ccd-ccff-43e0-a91f-cf63fc39d330",
+              "name": "Classification result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mlc",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"file_id\": \"string\",\n  \"status\": \"string\",\n  \"classification\": \"string\",\n  \"language\": \"string\",\n  \"is_amendment\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}.app.zuva.ai/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c4d5030-6ea6-4861-8dfa-4237ba943951",
+    "name": "Zuva DocAI Classification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).\n\nContact Support:\n Name: Zuva Support",
+      "type": "text/plain"
+    }
+  }
+}

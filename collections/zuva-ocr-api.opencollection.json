@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuva DocAI Classification OCR API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OCR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an OCR request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an OCR request."
+        },
+        {
+          "info": {
+            "name": "Query multiple OCR requests.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocrs",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of OCR request IDs."
+              }
+            ]
+          },
+          "docs": "Query multiple OCR requests."
+        },
+        {
+          "info": {
+            "name": "Retrieve an OCR request status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Retrieve an OCR request status."
+        },
+        {
+          "info": {
+            "name": "Retrieve OCR extracted text.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr/:request_id/text",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Retrieve OCR extracted text."
+        },
+        {
+          "info": {
+            "name": "Download all page images as a zip.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr/:request_id/images",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Download all page images as a zip."
+        },
+        {
+          "info": {
+            "name": "Download a single page image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr/:request_id/images/:page_number",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download a single page image."
+        },
+        {
+          "info": {
+            "name": "Retrieve layout protobuf binary.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/ocr/:request_id/layouts",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Retrieve layout protobuf binary."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

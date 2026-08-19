@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuva DocAI Classification Files API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a document file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.app.zuva.ai/api/v2/files"
+          },
+          "docs": "Upload the binary content of a document to Zuva. Returns a file_id used by the OCR, extraction, and classification services."
+        },
+        {
+          "info": {
+            "name": "Delete multiple files.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}.app.zuva.ai/api/v2/files",
+            "params": [
+              {
+                "name": "file_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of file IDs to delete."
+              }
+            ]
+          },
+          "docs": "Delete multiple uploaded files by their file IDs."
+        },
+        {
+          "info": {
+            "name": "Delete a single file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}.app.zuva.ai/api/v2/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an uploaded file."
+              }
+            ]
+          },
+          "docs": "Delete a single file."
+        },
+        {
+          "info": {
+            "name": "Update a file's expiration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}.app.zuva.ai/api/v2/files/:file_id/expiration",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an uploaded file."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the retention period (expiration) of an uploaded file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

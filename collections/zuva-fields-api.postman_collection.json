@@ -1,0 +1,490 @@
+{
+  "item": [
+    {
+      "id": "7df6ad73-17b9-4722-ab73-0bbccfb81e0a",
+      "name": "Fields",
+      "description": {
+        "content": "Field catalog management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72ece1cd-a8cd-4aef-b894-ca39806ec44d",
+          "name": "List available fields.",
+          "request": {
+            "name": "List available fields.",
+            "description": {
+              "content": "List all available extraction fields with their metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8134df00-804e-42fd-b67d-713088adcf78",
+              "name": "List of fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field_id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"bias\": 7430.591493297578,\n    \"f_score\": 7524.191150962012,\n    \"precision\": 9520.242416467925,\n    \"recall\": 8917.26463645911,\n    \"is_custom\": false\n  },\n  {\n    \"field_id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"bias\": 1352.399254567671,\n    \"f_score\": 5138.508639936875,\n    \"precision\": 2608.894160660633,\n    \"recall\": 4177.745960792043,\n    \"is_custom\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34e20d75-3cbc-449c-a3d9-91bf309524cc",
+          "name": "Create a custom extraction field.",
+          "request": {
+            "name": "Create a custom extraction field.",
+            "description": {},
+            "url": {
+              "path": [
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36e6d1af-02c0-4b3d-8745-a32324105c3a",
+              "name": "Field created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"bias\": 8835.264145030944,\n  \"f_score\": 165.36922525855258,\n  \"precision\": 6419.130931209897,\n  \"recall\": 6093.124420649857,\n  \"is_custom\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb09710e-d72f-4c7c-bf60-07c698b6a877",
+          "name": "Retrieve field metadata.",
+          "request": {
+            "name": "Retrieve field metadata.",
+            "description": {},
+            "url": {
+              "path": [
+                "fields",
+                ":field_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "field_id",
+                  "description": "(Required) The unique identifier of a field."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cbc1b7b1-3127-4a2d-9103-57946e90a6ab",
+              "name": "Field metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fields",
+                    ":field_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field_id",
+                      "description": "(Required) The unique identifier of a field."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"bias\": 8835.264145030944,\n  \"f_score\": 165.36922525855258,\n  \"precision\": 6419.130931209897,\n  \"recall\": 6093.124420649857,\n  \"is_custom\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94de0871-cb8c-4aff-a547-85424dbeeba7",
+          "name": "Update field metadata.",
+          "request": {
+            "name": "Update field metadata.",
+            "description": {
+              "content": "Update a field's name and description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fields",
+                ":field_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "field_id",
+                  "description": "(Required) The unique identifier of a field."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2feeb174-268e-4ab3-913c-75baf366c24b",
+              "name": "Field metadata updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fields",
+                    ":field_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field_id",
+                      "description": "(Required) The unique identifier of a field."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"field_name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"bias\": 8835.264145030944,\n  \"f_score\": 165.36922525855258,\n  \"precision\": 6419.130931209897,\n  \"recall\": 6093.124420649857,\n  \"is_custom\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}.app.zuva.ai/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3512ef3e-9173-4333-8fa0-ba2260935d91",
+    "name": "Zuva DocAI Classification Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).\n\nContact Support:\n Name: Zuva Support",
+      "type": "text/plain"
+    }
+  }
+}

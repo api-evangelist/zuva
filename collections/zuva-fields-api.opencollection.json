@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuva DocAI Classification Fields API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available fields.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/fields"
+          },
+          "docs": "List all available extraction fields with their metadata."
+        },
+        {
+          "info": {
+            "name": "Create a custom extraction field.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.app.zuva.ai/api/v2/fields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a custom extraction field."
+        },
+        {
+          "info": {
+            "name": "Retrieve field metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/fields/:field_id/metadata",
+            "params": [
+              {
+                "name": "field_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a field."
+              }
+            ]
+          },
+          "docs": "Retrieve field metadata."
+        },
+        {
+          "info": {
+            "name": "Update field metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{region}.app.zuva.ai/api/v2/fields/:field_id/metadata",
+            "params": [
+              {
+                "name": "field_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a field."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a field's name and description."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

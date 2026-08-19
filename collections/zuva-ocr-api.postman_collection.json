@@ -1,0 +1,810 @@
+{
+  "item": [
+    {
+      "id": "36f680fb-8c1e-43ef-ad24-51048c07396b",
+      "name": "OCR",
+      "description": {
+        "content": "Optical character recognition.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f745affd-5235-4c8c-9425-ea90501d22ac",
+          "name": "Create an OCR request.",
+          "request": {
+            "name": "Create an OCR request.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ca9f93a-e9c6-4e2d-8114-01eccd3e6719",
+              "name": "OCR requests accepted and queued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"page_count\": 185,\n    \"character_count\": 4460,\n    \"scan_quality\": \"string\",\n    \"scan_score\": 9908.271793284934\n  },\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"page_count\": 8495,\n    \"character_count\": 7962,\n    \"scan_quality\": \"string\",\n    \"scan_score\": 2770.8091179061157\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0520f349-3a61-4210-be3c-f47b36d08978",
+          "name": "Query multiple OCR requests.",
+          "request": {
+            "name": "Query multiple OCR requests.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocrs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "Comma-separated list of OCR request IDs."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0384decf-c830-493f-9f67-0a1461e32e2f",
+              "name": "OCR request statuses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocrs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"page_count\": 185,\n    \"character_count\": 4460,\n    \"scan_quality\": \"string\",\n    \"scan_score\": 9908.271793284934\n  },\n  {\n    \"request_id\": \"string\",\n    \"file_id\": \"string\",\n    \"status\": \"string\",\n    \"page_count\": 8495,\n    \"character_count\": 7962,\n    \"scan_quality\": \"string\",\n    \"scan_score\": 2770.8091179061157\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b01c98ad-f9b6-4aaf-9eb8-6251f6f8ca5c",
+          "name": "Retrieve an OCR request status.",
+          "request": {
+            "name": "Retrieve an OCR request status.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "285ff77b-29da-43c5-873d-6717e0e84f5a",
+              "name": "OCR request status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_id\": \"string\",\n  \"file_id\": \"string\",\n  \"status\": \"string\",\n  \"page_count\": 2732,\n  \"character_count\": 1629,\n  \"scan_quality\": \"string\",\n  \"scan_score\": 9127.334439904842\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0793cd7f-f465-41f3-89ad-340db8fa452f",
+          "name": "Retrieve OCR extracted text.",
+          "request": {
+            "name": "Retrieve OCR extracted text.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr",
+                ":request_id",
+                "text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96711f4c-1841-4148-b191-67e661aababc",
+              "name": "Extracted text.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr",
+                    ":request_id",
+                    "text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a37e93d-d74d-4605-9a26-1c875f2af065",
+          "name": "Download all page images as a zip.",
+          "request": {
+            "name": "Download all page images as a zip.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr",
+                ":request_id",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "077907f1-84a6-49ff-b8a6-1999f48afa8a",
+              "name": "Zip archive of page PNG images.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr",
+                    ":request_id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7e8bf22-9dd3-4c9d-b598-83839129ed7a",
+          "name": "Download a single page image.",
+          "request": {
+            "name": "Download a single page image.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr",
+                ":request_id",
+                "images",
+                ":page_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "page_number",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a35e7866-ef87-48e5-811a-da552f2f2324",
+              "name": "PNG image of the requested page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr",
+                    ":request_id",
+                    "images",
+                    ":page_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "page_number",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aabd0a8-0246-4372-8689-1d613a91d293",
+          "name": "Retrieve layout protobuf binary.",
+          "request": {
+            "name": "Retrieve layout protobuf binary.",
+            "description": {},
+            "url": {
+              "path": [
+                "ocr",
+                ":request_id",
+                "layouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) The unique identifier of an asynchronous request."
+                },
+                {
+                  "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0af86ae4-3282-4a0b-90d5-0402de83be20",
+              "name": "Layout protobuf binary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocr",
+                    ":request_id",
+                    "layouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) The unique identifier of an asynchronous request."
+                    },
+                    {
+                      "description": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Deployment region for the Zuva DocAI API. (This can only be one of us,eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}.app.zuva.ai/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c04c991e-5c61-4e31-81ce-0bffe47f26c6",
+    "name": "Zuva DocAI Classification OCR API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).\n\nContact Support:\n Name: Zuva Support",
+      "type": "text/plain"
+    }
+  }
+}

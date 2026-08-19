@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuva DocAI Classification Field Extraction API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Field Extraction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create field extraction requests.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.app.zuva.ai/api/v2/extraction",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit one or more files and field IDs to extract. Accepts up to 100 file IDs and 100 field IDs per request. Returns one request per file."
+        },
+        {
+          "info": {
+            "name": "Query multiple extraction requests.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/extractions",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of extraction request IDs."
+              }
+            ]
+          },
+          "docs": "Query multiple extraction requests."
+        },
+        {
+          "info": {
+            "name": "Retrieve an extraction request status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/extraction/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Retrieve an extraction request status."
+        },
+        {
+          "info": {
+            "name": "Retrieve extraction text results.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/extraction/:request_id/results/text",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Fetch extracted field values with text spans and locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

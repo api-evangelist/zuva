@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zuva DocAI Classification API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a document classification request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.app.zuva.ai/api/v2/mlc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit files to the multi-level classification (MLC) service, which classifies documents across 220+ document types and returns the document language and amendment status."
+        },
+        {
+          "info": {
+            "name": "Query multiple classification requests.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/mlcs",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of classification request IDs."
+              }
+            ]
+          },
+          "docs": "Query multiple classification requests."
+        },
+        {
+          "info": {
+            "name": "Retrieve classification status and results.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.app.zuva.ai/api/v2/mlc/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an asynchronous request."
+              }
+            ]
+          },
+          "docs": "Retrieve the classification result for a request, including the document type, detected language, and whether the document is an amendment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
