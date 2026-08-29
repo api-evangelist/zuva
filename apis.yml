@@ -7,6 +7,18 @@ description: Zuva (by Kira Systems) provides a contract and document AI REST API
   asynchronous OCR, field extraction across 1,400+ pre-built fields, multi-level
   document classification across 220+ document types, language detection, and a
   searchable fields catalog, secured with Bearer API tokens across US and EU regions.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
