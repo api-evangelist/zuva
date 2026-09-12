@@ -2,25 +2,21 @@
   "repo": "zuva",
   "feeds": [
     {
-      "source": "https://zuva.ai/blog/index.xml",
-      "feed_url": "https://zuva.ai/blog/index.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
-    },
-    {
       "source": "https://zuva.ai/blog/",
       "feed_url": "https://zuva.ai/blog/index.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "method": "discovered"
+    },
+    {
+      "source": "https://zuva.ai/blog/index.xml",
+      "feed_url": "https://zuva.ai/blog/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 30,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
