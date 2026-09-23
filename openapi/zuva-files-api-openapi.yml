@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Zuva DocAI Classification Files API
+  title: Zuva DocAI Files API
   description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
   termsOfService: https://zuva.ai/terms/zuva/
   contact:
@@ -28,7 +28,7 @@ paths:
       operationId: createFile
       tags:
       - Files
-      summary: Upload a document file.
+      summary: Upload a document file
       description: Upload the binary content of a document to Zuva. Returns a file_id used by the OCR, extraction, and classification services.
       requestBody:
         required: true
@@ -48,7 +48,7 @@ paths:
       operationId: deleteFiles
       tags:
       - Files
-      summary: Delete multiple files.
+      summary: Delete multiple files
       description: Delete multiple uploaded files by their file IDs.
       parameters:
       - name: file_ids
@@ -65,7 +65,7 @@ paths:
       operationId: deleteFile
       tags:
       - Files
-      summary: Delete a single file.
+      summary: Delete a single file
       parameters:
       - $ref: '#/components/parameters/FileId'
       responses:
@@ -76,7 +76,7 @@ paths:
       operationId: updateFileExpiration
       tags:
       - Files
-      summary: Update a file's expiration.
+      summary: Update a file's expiration
       description: Update the retention period (expiration) of an uploaded file.
       parameters:
       - $ref: '#/components/parameters/FileId'

@@ -1,11 +1,7 @@
 {
   "provider": "zuva",
   "sources": [
-    "zuva-classification-api-openapi.yml",
-    "zuva-field-extraction-api-openapi.yml",
-    "zuva-fields-api-openapi.yml",
-    "zuva-files-api-openapi.yml",
-    "zuva-ocr-api-openapi.yml"
+    "_original/zuva-openapi.yml"
   ],
   "outputs": [
     "zuva-classification-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zuva-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zuva-classification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zuva-field-extraction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zuva-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zuva-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zuva-ocr-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

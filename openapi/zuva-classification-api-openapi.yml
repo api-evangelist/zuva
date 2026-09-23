@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Zuva DocAI Classification API
   description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
@@ -28,7 +28,7 @@ paths:
       operationId: createClassification
       tags:
       - Classification
-      summary: Create a document classification request.
+      summary: Create a document classification request
       description: Submit files to the multi-level classification (MLC) service, which classifies documents across 220+ document types and returns the document language and amendment status.
       requestBody:
         required: true
@@ -57,7 +57,7 @@ paths:
       operationId: getClassifications
       tags:
       - Classification
-      summary: Query multiple classification requests.
+      summary: Query multiple classification requests
       parameters:
       - name: request_id
         in: query
@@ -79,7 +79,7 @@ paths:
       operationId: getClassification
       tags:
       - Classification
-      summary: Retrieve classification status and results.
+      summary: Retrieve classification status and results
       description: Retrieve the classification result for a request, including the document type, detected language, and whether the document is an amendment.
       parameters:
       - $ref: '#/components/parameters/RequestId'

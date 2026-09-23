@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Zuva DocAI Classification Fields API
+  title: Zuva DocAI Fields API
   description: The Zuva DocAI API is a RESTful contract and document AI API for extracting structured data from unstructured documents. It provides asynchronous file submission, OCR, field extraction across 1,400+ pre-built fields, multi-level document classification across 220+ document types, language detection, and a searchable fields catalog. All requests are authenticated with a Bearer API token and served from regional hosts (US and EU).
   termsOfService: https://zuva.ai/terms/zuva/
   contact:
@@ -28,7 +28,7 @@ paths:
       operationId: getFields
       tags:
       - Fields
-      summary: List available fields.
+      summary: List available fields
       description: List all available extraction fields with their metadata.
       responses:
         '200':
@@ -43,7 +43,7 @@ paths:
       operationId: createField
       tags:
       - Fields
-      summary: Create a custom extraction field.
+      summary: Create a custom extraction field
       requestBody:
         required: true
         content:
@@ -67,7 +67,7 @@ paths:
       operationId: getFieldMetadata
       tags:
       - Fields
-      summary: Retrieve field metadata.
+      summary: Retrieve field metadata
       parameters:
       - $ref: '#/components/parameters/FieldId'
       responses:
@@ -81,7 +81,7 @@ paths:
       operationId: updateFieldMetadata
       tags:
       - Fields
-      summary: Update field metadata.
+      summary: Update field metadata
       description: Update a field's name and description.
       parameters:
       - $ref: '#/components/parameters/FieldId'
