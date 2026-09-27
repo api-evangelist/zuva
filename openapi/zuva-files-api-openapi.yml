@@ -99,14 +99,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/File'
 components:
-  parameters:
-    FileId:
-      name: file_id
-      in: path
-      required: true
-      description: The unique identifier of an uploaded file.
-      schema:
-        type: string
   schemas:
     File:
       type: object
@@ -126,6 +118,14 @@ components:
           type: array
           items:
             type: string
+  parameters:
+    FileId:
+      name: file_id
+      in: path
+      required: true
+      description: The unique identifier of an uploaded file.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

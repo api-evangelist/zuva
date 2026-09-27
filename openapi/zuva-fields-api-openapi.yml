@@ -104,14 +104,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Field'
 components:
-  parameters:
-    FieldId:
-      name: field_id
-      in: path
-      required: true
-      description: The unique identifier of a field.
-      schema:
-        type: string
   schemas:
     Field:
       type: object
@@ -132,6 +124,14 @@ components:
           type: number
         is_custom:
           type: boolean
+  parameters:
+    FieldId:
+      name: field_id
+      in: path
+      required: true
+      description: The unique identifier of a field.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

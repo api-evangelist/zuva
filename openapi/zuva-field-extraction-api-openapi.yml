@@ -109,6 +109,24 @@ paths:
                 $ref: '#/components/schemas/ExtractionResults'
 components:
   schemas:
+    Request:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        field_ids:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - processing
+          - complete
+          - failed
     ExtractionResults:
       type: object
       properties:
@@ -157,24 +175,6 @@ components:
               type: array
               items:
                 type: object
-    Request:
-      type: object
-      properties:
-        request_id:
-          type: string
-        file_id:
-          type: string
-        field_ids:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-          enum:
-          - queued
-          - processing
-          - complete
-          - failed
   parameters:
     RequestId:
       name: request_id
