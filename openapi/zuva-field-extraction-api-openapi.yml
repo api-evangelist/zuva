@@ -108,6 +108,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExtractionResults'
 components:
+  parameters:
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      description: The unique identifier of an asynchronous request.
+      schema:
+        type: string
   schemas:
     Request:
       type: object
@@ -175,14 +183,6 @@ components:
               type: array
               items:
                 type: object
-  parameters:
-    RequestId:
-      name: request_id
-      in: path
-      required: true
-      description: The unique identifier of an asynchronous request.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
