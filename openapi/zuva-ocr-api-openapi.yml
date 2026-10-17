@@ -157,6 +157,14 @@ paths:
                 type: string
                 format: binary
 components:
+  parameters:
+    RequestId:
+      name: request_id
+      in: path
+      required: true
+      description: The unique identifier of an asynchronous request.
+      schema:
+        type: string
   schemas:
     OcrResult:
       type: object
@@ -175,14 +183,6 @@ components:
           type: string
         scan_score:
           type: number
-  parameters:
-    RequestId:
-      name: request_id
-      in: path
-      required: true
-      description: The unique identifier of an asynchronous request.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

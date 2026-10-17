@@ -109,6 +109,31 @@ paths:
                 $ref: '#/components/schemas/ExtractionResults'
 components:
   schemas:
+    ExtractionResults:
+      type: object
+      properties:
+        request_id:
+          type: string
+        file_id:
+          type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              field_id:
+                type: string
+              text:
+                type: string
+              spans:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    start:
+                      type: integer
+                    end:
+                      type: integer
     Request:
       type: object
       properties:
@@ -150,31 +175,6 @@ components:
               type: array
               items:
                 type: object
-    ExtractionResults:
-      type: object
-      properties:
-        request_id:
-          type: string
-        file_id:
-          type: string
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              field_id:
-                type: string
-              text:
-                type: string
-              spans:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    start:
-                      type: integer
-                    end:
-                      type: integer
   parameters:
     RequestId:
       name: request_id
