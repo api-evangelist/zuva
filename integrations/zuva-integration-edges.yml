@@ -1,0 +1,26 @@
+generated: '2026-10-20'
+method: searched
+checked:
+- microsoft-power-automate/integrations/microsoft-power-automate-integration-edges.yml
+source:
+- microsoft-power-automate/integrations/microsoft-power-automate-integration-edges.yml
+edges:
+- partner_name: Microsoft Power Automate (power-platform-connectors)
+  partner: microsoft-power-automate
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: power-platform-connectors
+  evidence: https://learn.microsoft.com/en-us/connectors/zuvadocai/
+  mirror_of: microsoft-power-automate/integrations/microsoft-power-automate-integration-edges.yml
+  apps:
+  - Zuva DocAI
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: AI
+  badges:
+  - Power Platform certified connector
